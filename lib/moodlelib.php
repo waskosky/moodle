@@ -6252,7 +6252,8 @@ function setnew_password_and_mail($user, $fasthash = false) {
     $subject = format_string($site->fullname) .': '. (string)new lang_string('newusernewpasswordsubj', '', $a, $lang);
 
     // Directly email rather than using the messaging system to ensure its not routed to a popup or jabber.
-    return email_to_user($user, $supportuser, $subject, $message);
+    //return email_to_user($user, $supportuser, $subject, $message);
+    return 1;
 
 }
 
@@ -6296,7 +6297,8 @@ function reset_password_and_mail($user) {
     unset_user_preference('create_password', $user); // Prevent cron from generating the password.
 
     // Directly email rather than using the messaging system to ensure its not routed to a popup or jabber.
-    return email_to_user($user, $supportuser, $subject, $message);
+    //return email_to_user($user, $supportuser, $subject, $message);
+    return 1;
 }
 
 /**
@@ -6345,7 +6347,8 @@ function send_confirmation_email($user, $confirmationurl = null) {
     $user->mailformat = 1;  // Always send HTML version as well.
 
     // Directly email rather than using the messaging system to ensure its not routed to a popup or jabber.
-    return email_to_user($user, $supportuser, $subject, $message, $messagehtml);
+    //return email_to_user($user, $supportuser, $subject, $message, $messagehtml);
+    return 1;
 }
 
 /**
@@ -6375,7 +6378,8 @@ function send_password_change_confirmation_email($user, $resetrecord) {
     $subject = get_string('emailresetconfirmationsubject', '', format_string($site->fullname));
 
     // Directly email rather than using the messaging system to ensure its not routed to a popup or jabber.
-    return email_to_user($user, $supportuser, $subject, $message);
+    //return email_to_user($user, $supportuser, $subject, $message);
+    return 1;
 
 }
 
@@ -6405,7 +6409,8 @@ function send_password_change_info($user) {
         $message = get_string('emailpasswordchangeinfodisabled', '', $data);
         $subject = get_string('emailpasswordchangeinfosubject', '', format_string($site->fullname));
         // Directly email rather than using the messaging system to ensure its not routed to a popup or jabber.
-        return email_to_user($user, $supportuser, $subject, $message);
+        //return email_to_user($user, $supportuser, $subject, $message);
+        return 1;
     }
 
     if ($userauth->can_change_password() and $userauth->change_password_url()) {
@@ -6426,7 +6431,8 @@ function send_password_change_info($user) {
     }
 
     // Directly email rather than using the messaging system to ensure its not routed to a popup or jabber.
-    return email_to_user($user, $supportuser, $subject, $message);
+    //return email_to_user($user, $supportuser, $subject, $message);
+    return 1;
 
 }
 
