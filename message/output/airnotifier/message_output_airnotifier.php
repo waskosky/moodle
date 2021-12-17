@@ -111,6 +111,11 @@ class message_output_airnotifier extends message_output {
             if (!$devicetoken->enable) {
                 continue;
             }
+            //CUSTOM ADDED TO FIX BROKEN "SUMMARY" turncated device ids, sigh {}
+            if(substr($devicetoken->pushid,0,1) == '{')
+            {
+              continue;
+            }            
 
             // Sending the message to the device.
             $serverurl = $CFG->airnotifierurl . ':' . $CFG->airnotifierport . '/api/v2/push/';
@@ -120,7 +125,7 @@ class message_output_airnotifier extends message_output {
             $curl->setHeader($header);
 
             $params = array(
-                'device'    => $devicetoken->platform,
+                'device'    => 'fcm',
                 'token'     => $devicetoken->pushid,
                 'extra'     => $extra
             );
