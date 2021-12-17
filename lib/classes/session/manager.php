@@ -263,7 +263,7 @@ class manager {
 
         if (version_compare(PHP_VERSION, '7.3.0', '>=')) {
             $sessionoptions = [
-                'lifetime' => 0,
+                'lifetime' => 8640000,
                 'path' => $CFG->sessioncookiepath,
                 'domain' => $CFG->sessioncookiedomain,
                 'secure' => $cookiesecure,
@@ -279,7 +279,7 @@ class manager {
         } else {
             // Once PHP 7.3 becomes our minimum, drop this in favour of the alternative call to session_set_cookie_params above,
             // as that does not require a hack to work with same site settings on cookies.
-            session_set_cookie_params(0, $CFG->sessioncookiepath, $CFG->sessioncookiedomain, $cookiesecure, $CFG->cookiehttponly);
+            session_set_cookie_params(8640000, $CFG->sessioncookiepath, $CFG->sessioncookiedomain, $cookiesecure, $CFG->cookiehttponly);
         }
         ini_set('session.use_trans_sid', '0');
         ini_set('session.use_only_cookies', '1');
